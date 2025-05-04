@@ -93,7 +93,14 @@
             let currentScore = internal1 + internal2 + internal3 + attendance + assignment;
             let neededMainExamMarks = ((50 - currentScore) / 0.40).toFixed(2);
 
-            document.getElementById("neededMarks").textContent = neededMainExamMarks > 0 ? neededMainExamMarks : "You're already passing!";
+            let message = neededMainExamMarks > 0 ? neededMainExamMarks : "You're already passing!";
+            
+            // Add disclaimer if required marks are less than 50
+            if (neededMainExamMarks > 0 && neededMainExamMarks < 50) {
+                message += " (But you need to get at least 50 marks to pass the exam.)";
+            }
+
+            document.getElementById("neededMarks").textContent = message;
         }
 
         function resetFields() {
