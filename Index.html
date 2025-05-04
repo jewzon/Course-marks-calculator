@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,34 +47,9 @@
 <body>
   <div class="container">
     <h2>Course Marks Calculator</h2>
-    <input type="number" id="int1" placeholder="Internal 1 (out of 100)" />
-    <input type="number" id="int2" placeholder="Internal 2 (out of 100)" />
-    <input type="number" id="int3" placeholder="Internal 3 (out of 100)" />
-    <input type="number" id="attendance" placeholder="Attendance (out of 100)" />
-    <input type="number" id="assignment" placeholder="Assignment (out of 100)" />
-    <input type="number" id="mainExam" placeholder="Main Exam (out of 100)" />
-    <button onclick="calculate()">Calculate</button>
-    <button class="reset" onclick="resetFields()">Reset</button>
-    <div class="result" id="result"></div>
-  </div>  <script>
-    function calculate() {
-      const int1 = parseFloat(document.getElementById('int1').value) || 0;
-      const int2 = parseFloat(document.getElementById('int2').value) || 0;
-      const int3 = parseFloat(document.getElementById('int3').value) || 0;
-      const attendance = parseFloat(document.getElementById('attendance').value) || 0;
-      const assignment = parseFloat(document.getElementById('assignment').value) || 0;
-      const mainExam = parseFloat(document.getElementById('mainExam').value) || 0;
-
-      const total = int1 * 0.15 + int2 * 0.15 + int3 * 0.15 + attendance * 0.05 + assignment * 0.10 + mainExam * 0.40;
-
-      document.getElementById('result').innerText = `Total Score: ${total.toFixed(2)}%`;
-    }
-
-    function resetFields() {
-      ['int1','int2','int3','attendance','assignment','mainExam'].forEach(id => {
-        document.getElementById(id).value = '';
-      });
-      document.getElementById('result').innerText = '';
-    }
-  </script></body>
-</html>
+    <input type="number" id="int1" placeholder="Internal 1 (out of 40)" />
+    <input type="number" id="int2" placeholder="Internal 2 (out of 40)" />
+    <input type="number" id="int3" placeholder="Internal 3 (out of 40)" />
+    <input type="number" id="attendance" placeholder="Attendance (%)" />
+    <input type="number" id="assignment" placeholder="Assignment (%)" />
+    <input type="number" id="mainExam" placeholder="Main
