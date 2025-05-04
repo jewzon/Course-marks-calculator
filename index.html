@@ -16,12 +16,12 @@
 <body>
     <div class="container">
         <h2>Course Marks Calculator</h2>
-        <label>Internal Exam 1 (out of 40): <input type="number" id="internal1"></label>
-        <label>Internal Exam 2 (out of 40): <input type="number" id="internal2"></label>
-        <label>Internal Exam 3 (out of 40): <input type="number" id="internal3"></label>
-        <label>Attendance (0-5%): <input type="number" id="attendance"></label>
-        <label>Assignment (0-10%): <input type="number" id="assignment"></label>
-        <label>Main Examination (out of 100): <input type="number" id="mainExam"></label>
+        <label>Internal Exam 1 (out of 40): <input type="number" id="internal1" min="0" max="40"></label>
+        <label>Internal Exam 2 (out of 40): <input type="number" id="internal2" min="0" max="40"></label>
+        <label>Internal Exam 3 (out of 40): <input type="number" id="internal3" min="0" max="40"></label>
+        <label>Attendance (0-5%): <input type="number" id="attendance" min="0" max="5"></label>
+        <label>Assignment (0-10%): <input type="number" id="assignment" min="0" max="10"></label>
+        <label>Main Examination (out of 100): <input type="number" id="mainExam" min="0" max="100"></label>
         <button onclick="calculateMarks()">Calculate</button>
         <button onclick="calculateRequiredMainExam()">Marks Needed to Pass 50%</button>
         <button onclick="resetFields()">Reset</button>
@@ -34,7 +34,7 @@
             let internal1 = (parseFloat(document.getElementById("internal1").value) / 40) * 15 || 0;
             let internal2 = (parseFloat(document.getElementById("internal2").value) / 40) * 15 || 0;
             let internal3 = (parseFloat(document.getElementById("internal3").value) / 40) * 15 || 0;
-            let attendance = parseFloat(document.getElementById("attendance").value) * 1|| 0;
+            let attendance = parseFloat(document.getElementById("attendance").value) * 1 || 0;
             let assignment = parseFloat(document.getElementById("assignment").value) * 1 || 0;
             let mainExam = parseFloat(document.getElementById("mainExam").value) * 0.40 || 0;
 
