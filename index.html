@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Marks Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+        label { display: block; margin: 10px 0; }
+        input { width: 100%; padding: 5px; }
+        button { margin: 10px; padding: 10px; cursor: pointer; }
+        h3 { margin-top: 20px; }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -16,9 +23,43 @@
         <label>Assignment (0-100%): <input type="number" id="assignment"></label>
         <label>Main Examination (out of 100): <input type="number" id="mainExam"></label>
         <button onclick="calculateMarks()">Calculate</button>
+        <button onclick="calculateRequiredMainExam()">Marks Needed to Pass</button>
         <button onclick="resetFields()">Reset</button>
         <h3>Final Score: <span id="finalScore">—</span>%</h3>
+        <h3>Marks Needed in Main Exam: <span id="neededMarks">—</span></h3>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function calculateMarks() {
+            let internal1 = parseFloat(document.getElementById("internal1").value) * 2.5 * 0.15 || 0;
+            let internal2 = parseFloat(document.getElementById("internal2").value) * 2.5 * 0.15 || 0;
+            let internal3 = parseFloat(document.getElementById("internal3").value) * 2.5 * 0.15 || 0;
+            let attendance = parseFloat(document.getElementById("attendance").value) * 0.05 || 0;
+            let assignment = parseFloat(document.getElementById("assignment").value) * 0.10 || 0;
+            let mainExam = parseFloat(document.getElementById("mainExam").value) * 0.40 || 0;
+
+            let finalScore = (internal1 + internal2 + internal3 + attendance + assignment + mainExam).toFixed(2);
+            document.getElementById("finalScore").textContent = finalScore;
+        }
+
+        function calculateRequiredMainExam() {
+            let internal1 = parseFloat(document.getElementById("internal1").value) * 2.5 * 0.15 || 0;
+            let internal2 = parseFloat(document.getElementById("internal2").value) * 2.5 * 0.15 || 0;
+            let internal3 = parseFloat(document.getElementById("internal3").value) * 2.5 * 0.15 || 0;
+            let attendance = parseFloat(document.getElementById("attendance").value) * 0.05 || 0;
+            let assignment = parseFloat(document.getElementById("assignment").value) * 0.10 || 0;
+
+            let currentScore = internal1 + internal2 + internal3 + attendance + assignment;
+            let neededMainExamMarks = ((50 - currentScore) / 0.40).toFixed(2);
+
+            document.getElementById("neededMarks").textContent = neededMainExamMarks > 0 ? neededMainExamMarks : "You're already passing!";
+        }
+
+        function resetFields() {
+            document.querySelectorAll("input").forEach(input => input.value = "");
+            document.getElementById("finalScore").textContent = "—";
+            document.getElementById("neededMarks").textContent = "—";
+        }
+    </script>
 </body>
 </html>
