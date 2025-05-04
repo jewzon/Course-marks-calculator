@@ -34,8 +34,8 @@
             let internal1 = (parseFloat(document.getElementById("internal1").value) / 40) * 15 || 0;
             let internal2 = (parseFloat(document.getElementById("internal2").value) / 40) * 15 || 0;
             let internal3 = (parseFloat(document.getElementById("internal3").value) / 40) * 15 || 0;
-            let attendance = parseFloat(document.getElementById("attendance").value) * 0.05 || 0;
-            let assignment = parseFloat(document.getElementById("assignment").value) * 0.10 || 0;
+            let attendance = parseFloat(document.getElementById("attendance").value) * 1|| 0;
+            let assignment = parseFloat(document.getElementById("assignment").value) * 1 || 0;
             let mainExam = parseFloat(document.getElementById("mainExam").value) * 0.40 || 0;
 
             let finalScore = (internal1 + internal2 + internal3 + attendance + assignment + mainExam).toFixed(2);
