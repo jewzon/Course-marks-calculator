@@ -5,12 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Marks Calculator</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        .container { max-width: 400px; margin: 50px auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
-        label { display: block; margin: 10px 0; }
-        input { width: 100%; padding: 5px; }
-        button { margin: 10px; padding: 10px; cursor: pointer; }
-        h3 { margin-top: 20px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center;
+            background-color: #2D2D34; 
+            color: #F1E4E8;
+        }
+        .container { 
+            max-width: 400px; 
+            margin: 50px auto; 
+            padding: 20px; 
+            background-color: #E2DCDE;
+            border-radius: 5px; 
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        label { display: block; margin: 10px 0; color: #2D2D34; }
+        input { 
+            width: 100%; 
+            padding: 5px; 
+            border: 1px solid #B97375; 
+            border-radius: 3px;
+        }
+        button { 
+            margin: 10px; 
+            padding: 10px; 
+            cursor: pointer; 
+            background-color: #B97375; 
+            border: none;
+            color: #F1E4E8;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        button:hover { background-color: #8A565C; }
+        h3 { margin-top: 20px; color: #2D2D34; }
     </style>
 </head>
 <body>
@@ -30,24 +57,34 @@
     </div>
 
     <script>
+        function validateInput(id, min, max) {
+            let value = parseFloat(document.getElementById(id).value);
+            if (isNaN(value) || value < min || value > max) {
+                alert(`Invalid entry for ${id}. Please enter a value between ${min} and ${max}.`);
+                document.getElementById(id).value = "";
+                return false;
+            }
+            return value;
+        }
+
         function calculateMarks() {
-            let internal1 = (parseFloat(document.getElementById("internal1").value) / 40) * 15 || 0;
-            let internal2 = (parseFloat(document.getElementById("internal2").value) / 40) * 15 || 0;
-            let internal3 = (parseFloat(document.getElementById("internal3").value) / 40) * 15 || 0;
-            let attendance = parseFloat(document.getElementById("attendance").value) * 1 || 0;
-            let assignment = parseFloat(document.getElementById("assignment").value) * 1 || 0;
-            let mainExam = parseFloat(document.getElementById("mainExam").value) * 0.40 || 0;
+            let internal1 = validateInput("internal1", 0, 40) / 40 * 15 || 0;
+            let internal2 = validateInput("internal2", 0, 40) / 40 * 15 || 0;
+            let internal3 = validateInput("internal3", 0, 40) / 40 * 15 || 0;
+            let attendance = validateInput("attendance", 0, 5) * 1 || 0;
+            let assignment = validateInput("assignment", 0, 10) * 1 || 0;
+            let mainExam = validateInput("mainExam", 0, 100) * 0.40 || 0;
 
             let finalScore = (internal1 + internal2 + internal3 + attendance + assignment + mainExam).toFixed(2);
             document.getElementById("finalScore").textContent = finalScore;
         }
 
         function calculateRequiredMainExam() {
-            let internal1 = (parseFloat(document.getElementById("internal1").value) / 40) * 15 || 0;
-            let internal2 = (parseFloat(document.getElementById("internal2").value) / 40) * 15 || 0;
-            let internal3 = (parseFloat(document.getElementById("internal3").value) / 40) * 15 || 0;
-            let attendance = parseFloat(document.getElementById("attendance").value) * 1 || 0;
-            let assignment = parseFloat(document.getElementById("assignment").value) * 1 || 0;
+            let internal1 = validateInput("internal1", 0, 40) / 40 * 15 || 0;
+            let internal2 = validateInput("internal2", 0, 40) / 40 * 15 || 0;
+            let internal3 = validateInput("internal3", 0, 40) / 40 * 15 || 0;
+            let attendance = validateInput("attendance", 0, 5) * 1 || 0;
+            let assignment = validateInput("assignment", 0, 10) * 1 || 0;
 
             let currentScore = internal1 + internal2 + internal3 + attendance + assignment;
             let neededMainExamMarks = ((50 - currentScore) / 0.40).toFixed(2);
